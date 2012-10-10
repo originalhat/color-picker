@@ -1,10 +1,12 @@
 package com.example.number.picker;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.NumberPicker;
 
 public class MainActivity extends Activity {
@@ -36,6 +38,12 @@ public class MainActivity extends Activity {
        // Initialize the red picker.
        NumberPicker blue_picker = (NumberPicker) findViewById(R.id.blue_picker);
        blue_picker = initializeDefaults(blue_picker);
+
+       // Hide keyboard / keypad.
+       InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+       imm.hideSoftInputFromWindow(red_picker.getWindowToken(), 0);
+       imm.hideSoftInputFromWindow(green_picker.getWindowToken(), 0);
+       imm.hideSoftInputFromWindow(blue_picker.getWindowToken(), 0);
 
        // Listen for changes, make updates if necessary.
        pickerListener(red_picker, "r");
